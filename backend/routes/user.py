@@ -1,6 +1,11 @@
-from pydantic import BaseModel, EmailStr
+from fastapi import APIRouter
+from backend.models.user import UserRegister
 
-class UserRegister(BaseModel):
-    name: str
-    email: EmailStr
-    password: str
+router = APIRouter()
+
+@router.post("/register")
+def register(user: UserRegister):
+    return {
+        "message": "User registration received",
+        "user": user
+    }
